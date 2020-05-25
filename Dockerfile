@@ -11,8 +11,10 @@ RUN apt-get update && apt-get -y install curl npm
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN composer global require laravel/installer
+# Export composer vendor path
+RUN echo "" >> ~/.bashrc && \
+    echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >> ~/.bashrc
 
-RUN PATH="/root/.composer:$PATH"
+RUN composer global require laravel/installer
 
 EXPOSE 80
