@@ -13,4 +13,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN composer global require laravel/installer
 
+RUN PATH="/root/.composer:$PATH"
+
 EXPOSE 80
