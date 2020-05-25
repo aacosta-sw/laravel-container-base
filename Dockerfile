@@ -7,7 +7,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 RUN install-php-extensions bcmath imagick xdebug zip opcache pdo_mysql
 # Laravel CLI, MySQL, Composer, and NPM
 
-RUN apt-get update && apt-get -y install curl npm
+RUN apt-get update && apt-get -y install curl npm unzip
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
