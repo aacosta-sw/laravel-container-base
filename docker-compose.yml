@@ -5,8 +5,10 @@ services:
     container_name: pwa_server
     volumes: 
       - "./app/:/var/www/html"
-    networks: 
+    networks:
       - pwa_network
+    ports: 
+      - 80:80
     build:
       context: ./
       dockerfile: Dockerfile
