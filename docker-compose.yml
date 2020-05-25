@@ -1,0 +1,32 @@
+version: '3.4'
+
+services: 
+  server:
+    container_name: pwa_server
+    volumes: 
+      - "./app/:/var/www/html"
+    networks: 
+      - pwa_network
+    build:
+      context: ./
+      dockerfile: Dockerfile
+
+  database:
+    image: mysql:5.7
+    container_name: pwa_mysql
+    networks: 
+      - pwa_network
+    volumes: 
+      - "db:/var/lib/mysql"
+    environment: 
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "pwa_db"
+
+volumes: 
+  db: {}
+
+networks: 
+  pwa_network:
+    driver: bridge
